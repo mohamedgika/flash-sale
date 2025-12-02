@@ -212,47 +212,6 @@ grep "Webhook processed" storage/logs/laravel.log
 }
 ```
 
-### Database Metrics
-
-**Current Stock Status:**
-```sql
--- Check product inventory
-SELECT 
-  id,
-  name,
-  stock,
-  (SELECT SUM(quantity) FROM holds 
-   WHERE product_id = products.id 
-   AND expires_at > NOW() 
-   AND consumed = false) as held_stock,
-  stock - COALESCE((SELECT SUM(quantity) FROM holds 
-                    WHERE product_id = products.id 
-                    AND expires_at > NOW() 
-                    AND consumed = false), 0) as available_stock
-FROM products;
-```
-
-**Active Holds:**
-```sql
-SELECT COUNT(*), SUM(quantity) 
-FROM holds 
-WHERE expires_at > NOW() AND consumed = false;
-```
-
-**Order Status Distribution:**
-```sql
-SELECT status, COUNT(*), SUM(total) 
-FROM orders 
-GROUP BY status;
-```
-
-**Idempotency Key Usage:**
-```sql
-SELECT COUNT(*) as total_webhooks,
-       COUNT(DISTINCT order_id) as unique_orders
-FROM idempotency_keys;
-```
-
 ### Performance Metrics
 
 **Query Performance:**
