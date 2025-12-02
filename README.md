@@ -88,10 +88,10 @@ php artisan serve
 ### 5. Quick Test
 ```bash
 # Check product availability
-curl http://localhost:8000/api/products/1
+curl http://localhost:8000/api/v1/products/1
 
 # Create hold
-curl -X POST http://localhost:8000/api/holds \
+curl -X POST http://localhost:8000/api/v1/holds \
   -H "Content-Type: application/json" \
   -d '{"product_id": 1, "qty": 2}'
 
@@ -275,10 +275,10 @@ grep "product:.*:available_stock" storage/logs/laravel.log | wc -l
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| GET | `/api/products/{id}` | Get product + availability |
-| POST | `/api/holds` | Create temporary hold (2 min) |
-| POST | `/api/orders` | Convert hold to order |
-| POST | `/api/payments/webhook` | Payment confirmation (idempotent) |
+| GET | `/api/v1/products/{id}` | Get product + availability |
+| POST | `/api/v1/holds` | Create temporary hold (2 min) |
+| POST | `/api/v1/orders` | Convert hold to order |
+| POST | `/api/v1/payments/webhook` | Payment confirmation (idempotent) |
 
 ---
 
