@@ -4,9 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Hold;
+
 
 class Product extends Model
 {
+    use HasFactory;
+
     protected $fillable = ['name', 'price', 'stock'];
     public function holds()
     {

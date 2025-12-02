@@ -19,6 +19,10 @@ class AppServiceProvider extends ServiceProvider
             \App\Interfaces\HoldRepositoryInterface::class,
             \App\Repositories\HoldRepository::class
         );
+        $this->app->bind(
+            \App\Interfaces\IdempotencyRepositoryInterface::class,
+            \App\Repositories\IdempotencyRepository::class
+        );
     }
 
     /**
