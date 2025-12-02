@@ -44,7 +44,7 @@ composer --version
 ### 2. Installation
 ```bash
 # Clone repository
-git clone <repo-url> flash-sale
+git clone https://github.com/mohamedgika/flash-sale.git flash-sale
 cd flash-sale
 
 # Install dependencies
